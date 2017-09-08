@@ -15,6 +15,10 @@ public protocol PickableDataSource {
     var numberOfItems: Int { get }
     func configure(cell: Cell, at indexPath: IndexPath)
     func pickItems(indexes: [Int]) -> [Item]
+
+    /// Optional
+    func prefetch(indexPaths: [IndexPath])
+    func cancelPrefetching(indexPaths: [IndexPath])
 }
 
 extension PickableDataSource {
@@ -29,5 +33,11 @@ extension PickableDataSource {
 
     public func notifyUpdate() {
         NotificationCenter.default.post(name: .PickableDataSourceDidUpdate, object: nil)
+    }
+
+    public func prefetch(indexPaths: [IndexPath]) {
+    }
+
+    public func cancelPrefetching(indexPaths: [IndexPath]) {
     }
 }

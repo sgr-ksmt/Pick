@@ -34,12 +34,12 @@ public final class PickerViewController<DataSource: PickableDataSource>: UIViewC
         }
         return proxy
     }()
+
     private lazy var dataSourceProxy: PickerViewDataSourceProxy = {
         let proxy = PickerViewDataSourceProxy()
         proxy.numberOfItems = { [weak self] in
             return self?.dataSource.numberOfItems ?? 0
         }
-
         proxy.cellGenerator = { [weak self] collectionView, indexPath in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DataSource.Cell.cellIdentifier, for: indexPath) as! DataSource.Cell
             if let options = self?.options {
@@ -50,6 +50,13 @@ public final class PickerViewController<DataSource: PickableDataSource>: UIViewC
             self?.updateCellAlpha(cell: cell, indexPath: indexPath)
             return cell
         }
+        proxy.prefetchHandler = { [weak self] indexPaths in
+            self?.dataSource.prefetch(indexPaths: indexPaths)
+        }
+        proxy.cancelPrefetchingHandler = { [weak self] indexPaths in
+            self?.dataSource.cancelPrefetching(indexPaths: indexPaths)
+        }
+
         return proxy
     }()
 
