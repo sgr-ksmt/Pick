@@ -20,8 +20,8 @@ class ColorDataSource: NSObject, PickableDataSource {
         return colors.count
     }
 
-    func configure(cell: PickableCell, at indexPath: IndexPath) {
-        cell.backgroundColor = colors[indexPath.item]
+    func configure(cell: ColorCell, at indexPath: IndexPath) {
+        cell.configure(with: colors[indexPath.item])
     }
 
     func pickItems(indexes: [Int]) -> [UIColor] {

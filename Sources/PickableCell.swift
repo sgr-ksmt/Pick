@@ -22,6 +22,10 @@ open class PickableCell: UICollectionViewCell {
         return String(describing: self)
     }
 
+    public static var defaultNib: UINib {
+        return UINib(nibName: String(describing: self), bundle: nil)
+    }
+
     private lazy var borderView: UIView = {
         let view = UIView(frame: .zero)
         view.clipsToBounds = true

@@ -13,20 +13,22 @@
 		16A8E0911F625C510078B880 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 16A8E08F1F625C510078B880 /* Main.storyboard */; };
 		16A8E0931F625C510078B880 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 16A8E0921F625C510078B880 /* Assets.xcassets */; };
 		16A8E0961F625C510078B880 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 16A8E0941F625C510078B880 /* LaunchScreen.storyboard */; };
-		16A8E09C1F625C770078B880 /* PickableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A8E09B1F625C770078B880 /* PickableCell.swift */; };
-		16A8E09E1F625C9E0078B880 /* PickableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A8E09D1F625C9E0078B880 /* PickableDataSource.swift */; };
-		16A8E0A01F625CED0078B880 /* PickerOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A8E09F1F625CED0078B880 /* PickerOptions.swift */; };
-		16A8E0A21F625DA70078B880 /* PickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A8E0A11F625DA70078B880 /* PickerViewController.swift */; };
-		16A8E0A41F625E8D0078B880 /* PickerViewDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A8E0A31F625E8D0078B880 /* PickerViewDelegateProxy.swift */; };
-		16A8E0A61F625EC00078B880 /* PickerViewDataSourceProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A8E0A51F625EC00078B880 /* PickerViewDataSourceProxy.swift */; };
 		16A8E0A71F625F2F0078B880 /* Pick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 166FA7441F625BCE004E4B6C /* Pick.framework */; };
 		16A8E0A81F625F2F0078B880 /* Pick.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 166FA7441F625BCE004E4B6C /* Pick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		16A8E0AD1F6264C30078B880 /* ColorDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A8E0AC1F6264C30078B880 /* ColorDataSource.swift */; };
 		16A8E0AF1F6267230078B880 /* UIColor+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A8E0AE1F6267230078B880 /* UIColor+Ex.swift */; };
-		16A8E0B11F62749F0078B880 /* PickerNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A8E0B01F62749F0078B880 /* PickerNavigationController.swift */; };
 		16D62BC81F62884100071702 /* AssetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D62BC71F62884100071702 /* AssetCell.swift */; };
 		16D62BCA1F628AC100071702 /* AssetDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D62BC91F628AC100071702 /* AssetDataSource.swift */; };
-		16D62BCC1F628FCE00071702 /* Notification+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D62BCB1F628FCE00071702 /* Notification+Ex.swift */; };
+		16D62BD61F62A68500071702 /* Notification+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D62BCE1F62A67F00071702 /* Notification+Ex.swift */; };
+		16D62BD71F62A68500071702 /* PickableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D62BCF1F62A67F00071702 /* PickableCell.swift */; };
+		16D62BD81F62A68500071702 /* PickableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D62BD01F62A67F00071702 /* PickableDataSource.swift */; };
+		16D62BD91F62A68500071702 /* PickerNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D62BD11F62A67F00071702 /* PickerNavigationController.swift */; };
+		16D62BDA1F62A68500071702 /* PickerOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D62BD21F62A67F00071702 /* PickerOptions.swift */; };
+		16D62BDB1F62A68500071702 /* PickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D62BD31F62A67F00071702 /* PickerViewController.swift */; };
+		16D62BDC1F62A68500071702 /* PickerViewDataSourceProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D62BD41F62A67F00071702 /* PickerViewDataSourceProxy.swift */; };
+		16D62BDD1F62A68500071702 /* PickerViewDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D62BD51F62A67F00071702 /* PickerViewDelegateProxy.swift */; };
+		16D62BDF1F62ADE400071702 /* ColorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D62BDE1F62ADE400071702 /* ColorCell.swift */; };
+		16D62BE11F62ADF000071702 /* ColorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16D62BE01F62ADF000071702 /* ColorCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,18 +66,20 @@
 		16A8E0921F625C510078B880 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		16A8E0951F625C510078B880 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		16A8E0971F625C510078B880 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		16A8E09B1F625C770078B880 /* PickableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickableCell.swift; sourceTree = "<group>"; };
-		16A8E09D1F625C9E0078B880 /* PickableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickableDataSource.swift; sourceTree = "<group>"; };
-		16A8E09F1F625CED0078B880 /* PickerOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerOptions.swift; sourceTree = "<group>"; };
-		16A8E0A11F625DA70078B880 /* PickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewController.swift; sourceTree = "<group>"; };
-		16A8E0A31F625E8D0078B880 /* PickerViewDelegateProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewDelegateProxy.swift; sourceTree = "<group>"; };
-		16A8E0A51F625EC00078B880 /* PickerViewDataSourceProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewDataSourceProxy.swift; sourceTree = "<group>"; };
 		16A8E0AC1F6264C30078B880 /* ColorDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorDataSource.swift; sourceTree = "<group>"; };
 		16A8E0AE1F6267230078B880 /* UIColor+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ex.swift"; sourceTree = "<group>"; };
-		16A8E0B01F62749F0078B880 /* PickerNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerNavigationController.swift; sourceTree = "<group>"; };
 		16D62BC71F62884100071702 /* AssetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetCell.swift; sourceTree = "<group>"; };
 		16D62BC91F628AC100071702 /* AssetDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetDataSource.swift; sourceTree = "<group>"; };
-		16D62BCB1F628FCE00071702 /* Notification+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Ex.swift"; sourceTree = "<group>"; };
+		16D62BCE1F62A67F00071702 /* Notification+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Ex.swift"; sourceTree = "<group>"; };
+		16D62BCF1F62A67F00071702 /* PickableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickableCell.swift; sourceTree = "<group>"; };
+		16D62BD01F62A67F00071702 /* PickableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickableDataSource.swift; sourceTree = "<group>"; };
+		16D62BD11F62A67F00071702 /* PickerNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerNavigationController.swift; sourceTree = "<group>"; };
+		16D62BD21F62A67F00071702 /* PickerOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerOptions.swift; sourceTree = "<group>"; };
+		16D62BD31F62A67F00071702 /* PickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewController.swift; sourceTree = "<group>"; };
+		16D62BD41F62A67F00071702 /* PickerViewDataSourceProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewDataSourceProxy.swift; sourceTree = "<group>"; };
+		16D62BD51F62A67F00071702 /* PickerViewDelegateProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewDelegateProxy.swift; sourceTree = "<group>"; };
+		16D62BDE1F62ADE400071702 /* ColorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCell.swift; sourceTree = "<group>"; };
+		16D62BE01F62ADF000071702 /* ColorCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColorCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +104,7 @@
 		166FA73A1F625BCD004E4B6C = {
 			isa = PBXGroup;
 			children = (
+				16D62BCD1F62A67F00071702 /* Sources */,
 				166FA7461F625BCE004E4B6C /* Pick */,
 				16A8E08A1F625C510078B880 /* Demo */,
 				166FA7451F625BCE004E4B6C /* Products */,
@@ -120,14 +125,6 @@
 			children = (
 				166FA7471F625BCE004E4B6C /* Pick.h */,
 				166FA7481F625BCE004E4B6C /* Info.plist */,
-				16A8E09B1F625C770078B880 /* PickableCell.swift */,
-				16A8E09D1F625C9E0078B880 /* PickableDataSource.swift */,
-				16A8E09F1F625CED0078B880 /* PickerOptions.swift */,
-				16A8E0A11F625DA70078B880 /* PickerViewController.swift */,
-				16A8E0B01F62749F0078B880 /* PickerNavigationController.swift */,
-				16A8E0A51F625EC00078B880 /* PickerViewDataSourceProxy.swift */,
-				16A8E0A31F625E8D0078B880 /* PickerViewDelegateProxy.swift */,
-				16D62BCB1F628FCE00071702 /* Notification+Ex.swift */,
 			);
 			path = Pick;
 			sourceTree = "<group>";
@@ -145,8 +142,25 @@
 				16A8E0AE1F6267230078B880 /* UIColor+Ex.swift */,
 				16D62BC71F62884100071702 /* AssetCell.swift */,
 				16D62BC91F628AC100071702 /* AssetDataSource.swift */,
+				16D62BDE1F62ADE400071702 /* ColorCell.swift */,
+				16D62BE01F62ADF000071702 /* ColorCell.xib */,
 			);
 			path = Demo;
+			sourceTree = "<group>";
+		};
+		16D62BCD1F62A67F00071702 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				16D62BCE1F62A67F00071702 /* Notification+Ex.swift */,
+				16D62BCF1F62A67F00071702 /* PickableCell.swift */,
+				16D62BD01F62A67F00071702 /* PickableDataSource.swift */,
+				16D62BD11F62A67F00071702 /* PickerNavigationController.swift */,
+				16D62BD21F62A67F00071702 /* PickerOptions.swift */,
+				16D62BD31F62A67F00071702 /* PickerViewController.swift */,
+				16D62BD41F62A67F00071702 /* PickerViewDataSourceProxy.swift */,
+				16D62BD51F62A67F00071702 /* PickerViewDelegateProxy.swift */,
+			);
+			path = Sources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -253,6 +267,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				16A8E0961F625C510078B880 /* LaunchScreen.storyboard in Resources */,
+				16D62BE11F62ADF000071702 /* ColorCell.xib in Resources */,
 				16A8E0931F625C510078B880 /* Assets.xcassets in Resources */,
 				16A8E0911F625C510078B880 /* Main.storyboard in Resources */,
 			);
@@ -265,14 +280,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				16A8E0B11F62749F0078B880 /* PickerNavigationController.swift in Sources */,
-				16A8E09C1F625C770078B880 /* PickableCell.swift in Sources */,
-				16A8E0A21F625DA70078B880 /* PickerViewController.swift in Sources */,
-				16A8E0A41F625E8D0078B880 /* PickerViewDelegateProxy.swift in Sources */,
-				16A8E09E1F625C9E0078B880 /* PickableDataSource.swift in Sources */,
-				16A8E0A01F625CED0078B880 /* PickerOptions.swift in Sources */,
-				16A8E0A61F625EC00078B880 /* PickerViewDataSourceProxy.swift in Sources */,
-				16D62BCC1F628FCE00071702 /* Notification+Ex.swift in Sources */,
+				16D62BDB1F62A68500071702 /* PickerViewController.swift in Sources */,
+				16D62BD71F62A68500071702 /* PickableCell.swift in Sources */,
+				16D62BDA1F62A68500071702 /* PickerOptions.swift in Sources */,
+				16D62BD81F62A68500071702 /* PickableDataSource.swift in Sources */,
+				16D62BD91F62A68500071702 /* PickerNavigationController.swift in Sources */,
+				16D62BD61F62A68500071702 /* Notification+Ex.swift in Sources */,
+				16D62BDD1F62A68500071702 /* PickerViewDelegateProxy.swift in Sources */,
+				16D62BDC1F62A68500071702 /* PickerViewDataSourceProxy.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,6 +297,7 @@
 			files = (
 				16A8E0AF1F6267230078B880 /* UIColor+Ex.swift in Sources */,
 				16A8E08E1F625C510078B880 /* ViewController.swift in Sources */,
+				16D62BDF1F62ADE400071702 /* ColorCell.swift in Sources */,
 				16D62BC81F62884100071702 /* AssetCell.swift in Sources */,
 				16D62BCA1F628AC100071702 /* AssetDataSource.swift in Sources */,
 				16A8E08C1F625C510078B880 /* AppDelegate.swift in Sources */,

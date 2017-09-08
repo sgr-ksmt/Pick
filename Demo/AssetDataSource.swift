@@ -11,6 +11,9 @@ import Pick
 import Photos
 
 final class AssetDataSource: NSObject, PickableDataSource {
+    typealias Cell = AssetCell
+    typealias Item = PHAsset
+
     var assets: PHFetchResult<PHAsset>?
     override init() {
         super.init()
@@ -25,7 +28,7 @@ final class AssetDataSource: NSObject, PickableDataSource {
         self.assets = PHAsset.fetchAssets(in: cameraroll, options: nil)
     }
 
-    func configure(cell: AssetCell, at indexPath: IndexPath) {
+    func configure(cell: Cell, at indexPath: IndexPath) {
         if let asset = assets?.object(at: indexPath.item) {
             cell.configure(with: asset)
         }
@@ -35,7 +38,7 @@ final class AssetDataSource: NSObject, PickableDataSource {
         return assets?.count ?? 0
     }
 
-    func pickItems(indexes: [Int]) -> [PHAsset] {
+    func pickItems(indexes: [Int]) -> [Item] {
         return assets?.objects(at: IndexSet(indexes)) ?? []
     }
 
