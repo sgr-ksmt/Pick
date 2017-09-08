@@ -1,0 +1,67 @@
+//
+//  ViewController.swift
+//  Demo
+//
+//  Created by suguru-kishimoto on 2017/09/08.
+//  Copyright © 2017年 Suguru Kishimoto. All rights reserved.
+//
+
+import UIKit
+import Pick
+import Photos
+
+class ViewController: UIViewController {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+
+    @IBAction func showColorPicker(sender: AnyObject) {
+        let nav = PickerNavigationController(dataSource: ColorDataSource())
+        nav.options = {
+            let options = PickerOptions()
+            options.limitOfSelection = 10
+            options.selectedBorderColor = .red
+            options.cancelButtonTitle = "キャンセル"
+            return options
+        }()
+
+        nav.pickItemsHandler = { items in
+            print(items, items.count)
+        }
+
+        present(nav, animated: true, completion: nil)
+    }
+
+    @IBAction func showPhotoPicker(sender: AnyObject) {
+
+        PHPhotoLibrary.requestAuthorization { status in
+            DispatchQueue.main.async { [weak self] in
+                if status == .authorized {
+                    self?._showPhotoPicker()
+                }
+            }
+        }
+    }
+
+    private func _showPhotoPicker() {
+        let nav = PickerNavigationController(dataSource: AssetDataSource())
+        nav.options = {
+            let options = PickerOptions()
+            options.limitOfSelection = 3
+            options.selectedBorderColor = .red
+            options.cancelButtonTitle = "キャンセル"
+            return options
+        }()
+        nav.pickItemsHandler = { assets in
+            print(assets)
+        }
+
+        present(nav, animated: true, completion: nil)
+    }
+}
+
