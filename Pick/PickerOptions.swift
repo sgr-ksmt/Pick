@@ -17,4 +17,5 @@ public final class PickerOptions {
     public var selectedBorderColor: UIColor = .white
     public var cancelButtonTitle: String = "Cancel"
     public var pickButtonTitle: String = "Pick"
+    public var viewTitle: String = ""
 }

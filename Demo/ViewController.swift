@@ -26,7 +26,7 @@ class ViewController: UIViewController {
             let options = PickerOptions()
             options.limitOfSelection = 10
             options.selectedBorderColor = .red
-            options.cancelButtonTitle = "キャンセル"
+            options.viewTitle = "Color Picker"
             return options
         }()
 
@@ -54,7 +54,7 @@ class ViewController: UIViewController {
             let options = PickerOptions()
             options.limitOfSelection = 3
             options.selectedBorderColor = .red
-            options.cancelButtonTitle = "キャンセル"
+            options.viewTitle = "Camera Roll"
             return options
         }()
         nav.pickItemsHandler = { assets in

@@ -137,6 +137,7 @@ public final class PickerViewController<DataSource: PickableDataSource>: UIViewC
     }
 
     private func syncOption() {
+        title = options.viewTitle
         delegateProxy.options = options
         collectionView.allowsMultipleSelection = options.limitOfSelection > 1
     }
@@ -157,15 +158,16 @@ public final class PickerViewController<DataSource: PickableDataSource>: UIViewC
             return
         }
 
-        let indexPaths = collectionView.indexPathsForSelectedItems ?? []
         if self.isLimited {
-            cell.alpha = !indexPaths.contains(indexPath) ? 0.5 : 1
+            cell.alpha = (collectionView.indexPathsForSelectedItems ?? []).contains(indexPath) ? 1.0 : 0.55
         } else {
-            cell.alpha = 1
+            cell.alpha = 1.0
         }
     }
 
     deinit {
-        NotificationCenter.default.removeObserver(self)
+        if let token = token {
+            NotificationCenter.default.removeObserver(token)
+        }
     }
 }
