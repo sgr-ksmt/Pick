@@ -23,13 +23,13 @@ public final class PickerViewController<DataSource: PickableDataSource>: UIViewC
     private lazy var delegateProxy: PickerViewDelegateProxy = {
         let proxy = PickerViewDelegateProxy(options: self.options)
         proxy.reloadCellsHandler = { [weak self] collectionView, indexPath in
-            guard let cell = collectionView.cellForItem(at: indexPath) else { return }
-            self?.updateCellAlpha(cell: cell, indexPath: indexPath)
+            guard let cell = collectionView.cellForItem(at: indexPath) as? DataSource.Cell else { return }
+            self?.updateCellSelectedStyle(cell: cell, indexPath: indexPath)
         }
-        proxy.didSelectHandler = { [weak self] in
+        proxy.didSelectHandler = { [weak self] _ in
             self?.updateBarButton()
         }
-        proxy.didDeselectHandler = { [weak self] in
+        proxy.didDeselectHandler = { [weak self] _ in
             self?.updateBarButton()
         }
         return proxy
@@ -45,9 +45,11 @@ public final class PickerViewController<DataSource: PickableDataSource>: UIViewC
             if let options = self?.options {
                 cell.selectedBorderColor = options.selectedBorderColor
                 cell.selectedBorderWidth = options.selectedBorderWidth
+                cell.selectedPositionTintColor = options.selectedPositionTintColor
+                cell.selectedPositionTextColor = options.selectedPositionTextColor
             }
             self?.dataSource.configure(cell: cell, at: indexPath)
-            self?.updateCellAlpha(cell: cell, indexPath: indexPath)
+            self?.updateCellSelectedStyle(cell: cell, indexPath: indexPath)
             return cell
         }
         proxy.prefetchHandler = { [weak self] indexPaths in
@@ -60,9 +62,9 @@ public final class PickerViewController<DataSource: PickableDataSource>: UIViewC
         return proxy
     }()
 
-    private(set) lazy var collectionView: UICollectionView = {
+    private(set) lazy var collectionView: PickerCollectionView = {
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        let view: UICollectionView = UICollectionView(frame: self.view.bounds, collectionViewLayout: layout)
+        let view = PickerCollectionView(frame: self.view.bounds, collectionViewLayout: layout)
         view.backgroundColor = .white
         view.delegate = self.delegateProxy
         view.dataSource = self.dataSourceProxy
@@ -124,7 +126,7 @@ public final class PickerViewController<DataSource: PickableDataSource>: UIViewC
     }
 
     @objc private func pick() {
-        let selectedIndexPaths = collectionView.indexPathsForSelectedItems ?? []
+        let selectedIndexPaths = collectionView.orderedIndexPathsForSelectedItems
         if selectedIndexPaths.isEmpty { return }
         pickItemsHandler?(dataSource.pickItems(indexes: selectedIndexPaths.map { $0.item }))
         navigationController?.dismiss(animated: true, completion: nil)
@@ -134,7 +136,7 @@ public final class PickerViewController<DataSource: PickableDataSource>: UIViewC
         if options.limitOfSelection <= 1 {
             return options.pickButtonTitle
         } else {
-            let selectedCount = collectionView.indexPathsForSelectedItems?.count ?? 0
+            let selectedCount = collectionView.orderedIndexPathsForSelectedItems.count
             if selectedCount == 0 {
                 return options.pickButtonTitle
             } else {
@@ -151,25 +153,29 @@ public final class PickerViewController<DataSource: PickableDataSource>: UIViewC
 
     private func updateBarButton() {
         pickBarButton.title = pickButtonTitle
-        pickBarButton.isEnabled = !(collectionView.indexPathsForSelectedItems ?? []).isEmpty
+        pickBarButton.isEnabled = !collectionView.orderedIndexPathsForSelectedItems.isEmpty
         cancelBarButton.title = options.cancelButtonTitle
     }
 
     private var isLimited: Bool {
-        return (collectionView.indexPathsForSelectedItems?.count ?? 0) >= options.limitOfSelection
+        return collectionView.orderedIndexPathsForSelectedItems.count >= options.limitOfSelection
     }
 
-    private func updateCellAlpha(cell: UICollectionViewCell, indexPath: IndexPath) {
+    private func updateCellSelectedStyle(cell: PickableCell, indexPath: IndexPath) {
         if !collectionView.allowsMultipleSelection {
             cell.alpha = 1.0
+            cell.showsSelectedPosition = false
             return
         }
 
         if self.isLimited {
-            cell.alpha = (collectionView.indexPathsForSelectedItems ?? []).contains(indexPath) ? 1.0 : 0.55
+            cell.alpha = collectionView.orderedIndexPathsForSelectedItems.contains(indexPath) ? 1.0 : 0.55
         } else {
             cell.alpha = 1.0
         }
+
+        cell.showsSelectedPosition = options.showsSelectedNumber
+        cell.selectedPosition = collectionView.orderedIndexPathsForSelectedItems.index(of: indexPath).map { $0 + 1 } ?? -1
     }
 
     deinit {

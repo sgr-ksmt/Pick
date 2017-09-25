@@ -25,7 +25,6 @@ class ViewController: UIViewController {
         nav.options = {
             let options = PickerOptions()
             options.limitOfSelection = 10
-            options.selectedBorderColor = .red
             options.viewTitle = "Color Picker"
             return options
         }()
@@ -53,7 +52,6 @@ class ViewController: UIViewController {
         nav.options = {
             let options = PickerOptions()
             options.limitOfSelection = 3
-            options.selectedBorderColor = .red
             options.viewTitle = "Camera Roll"
             return options
         }()

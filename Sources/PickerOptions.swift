@@ -10,12 +10,18 @@ import Foundation
 
 public final class PickerOptions {
     public init() {}
+    private static var defaultTintColor: UIColor {
+        return UIView().tintColor
+    }
     
     public var numberOfColumnsInRow: Int = 3
     public var limitOfSelection: Int = Int.max
     public var selectedBorderWidth: CGFloat = 4.0
-    public var selectedBorderColor: UIColor = .white
+    public var selectedBorderColor: UIColor = PickerOptions.defaultTintColor
     public var cancelButtonTitle: String = "Cancel"
     public var pickButtonTitle: String = "Pick"
     public var viewTitle: String = ""
+    public var showsSelectedNumber: Bool = true
+    public var selectedPositionTintColor: UIColor = .white
+    public var selectedPositionTextColor: UIColor = PickerOptions.defaultTintColor
 }
