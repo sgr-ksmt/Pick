@@ -9,17 +9,12 @@
 import UIKit
 
 final class PickerViewDelegateProxy: NSObject, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-    public var options: PickerOptions {
-        didSet {
-            beforeLimitedState = false
-        }
-    }
+    public var options: PickerOptions
 
     var reloadCellsHandler: (UICollectionView, IndexPath) -> Void = { _, _ in }
-    var didSelectHandler: () -> Void = {}
-    var didDeselectHandler: () -> Void = {}
+    var didSelectHandler: (IndexPath) -> Void = { _ in }
+    var didDeselectHandler: (IndexPath) -> Void = { _ in }
 
-    private var beforeLimitedState: Bool = false
     init(options: PickerOptions) {
         self.options = options
         super.init()
@@ -41,37 +36,22 @@ final class PickerViewDelegateProxy: NSObject, UICollectionViewDelegate, UIColle
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let isLimited = self.isLimited(collectionView: collectionView)
-        defer {
-            beforeLimitedState = isLimited
-        }
-
         _collectionView(collectionView).orderedIndexPathsForSelectedItems.append(indexPath)
-
         if collectionView.allowsMultipleSelection {
-            if beforeLimitedState != isLimited, isLimited {
-                collectionView.indexPathsForVisibleItems.forEach { reloadCellsHandler(collectionView, $0) }
-            }
+            collectionView.indexPathsForVisibleItems.forEach { reloadCellsHandler(collectionView, $0) }
         }
-        didSelectHandler()
+        didSelectHandler(indexPath)
     }
 
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        let isLimited = self.isLimited(collectionView: collectionView)
-        defer {
-            beforeLimitedState = isLimited
-        }
-
         if let index = _collectionView(collectionView).orderedIndexPathsForSelectedItems.index(of: indexPath) {
             _collectionView(collectionView).orderedIndexPathsForSelectedItems.remove(at: index)
         }
 
         if collectionView.allowsMultipleSelection {
-            if beforeLimitedState != isLimited, !isLimited {
-                collectionView.indexPathsForVisibleItems.forEach { reloadCellsHandler(collectionView, $0) }
-            }
+            collectionView.indexPathsForVisibleItems.forEach { reloadCellsHandler(collectionView, $0) }
         }
-        didDeselectHandler()
+        didDeselectHandler(indexPath)
     }
 
     private var margin: CGFloat {

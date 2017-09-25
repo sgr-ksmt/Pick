@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		166FA7491F625BCE004E4B6C /* Pick.h in Headers */ = {isa = PBXBuildFile; fileRef = 166FA7471F625BCE004E4B6C /* Pick.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1698D0911F78CCD400A3D21C /* PickerCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1698D0901F78CCD400A3D21C /* PickerCollectionView.swift */; };
+		1698D0931F78D5C500A3D21C /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1698D0921F78D5C500A3D21C /* PaddingLabel.swift */; };
 		16A8E08C1F625C510078B880 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A8E08B1F625C510078B880 /* AppDelegate.swift */; };
 		16A8E08E1F625C510078B880 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A8E08D1F625C510078B880 /* ViewController.swift */; };
 		16A8E0911F625C510078B880 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 16A8E08F1F625C510078B880 /* Main.storyboard */; };
@@ -61,6 +62,7 @@
 		166FA7471F625BCE004E4B6C /* Pick.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Pick.h; sourceTree = "<group>"; };
 		166FA7481F625BCE004E4B6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1698D0901F78CCD400A3D21C /* PickerCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerCollectionView.swift; sourceTree = "<group>"; };
+		1698D0921F78D5C500A3D21C /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
 		16A8E0891F625C510078B880 /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		16A8E08B1F625C510078B880 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		16A8E08D1F625C510078B880 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 				16D62BD41F62A67F00071702 /* PickerViewDataSourceProxy.swift */,
 				16D62BD51F62A67F00071702 /* PickerViewDelegateProxy.swift */,
 				1698D0901F78CCD400A3D21C /* PickerCollectionView.swift */,
+				1698D0921F78D5C500A3D21C /* PaddingLabel.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -289,6 +292,7 @@
 				1698D0911F78CCD400A3D21C /* PickerCollectionView.swift in Sources */,
 				16D62BD81F62A68500071702 /* PickableDataSource.swift in Sources */,
 				16D62BD91F62A68500071702 /* PickerNavigationController.swift in Sources */,
+				1698D0931F78D5C500A3D21C /* PaddingLabel.swift in Sources */,
 				16D62BD61F62A68500071702 /* Notification+Ex.swift in Sources */,
 				16D62BDD1F62A68500071702 /* PickerViewDelegateProxy.swift in Sources */,
 				16D62BDC1F62A68500071702 /* PickerViewDataSourceProxy.swift in Sources */,

@@ -18,4 +18,5 @@ public final class PickerOptions {
     public var cancelButtonTitle: String = "Cancel"
     public var pickButtonTitle: String = "Pick"
     public var viewTitle: String = ""
+    public var showsSelectedNumber: Bool = true
 }

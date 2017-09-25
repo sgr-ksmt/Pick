@@ -35,6 +35,17 @@ open class PickableCell: UICollectionViewCell {
         return view
     }()
 
+    private lazy var positionLabel: PaddingLabel = {
+        let label = PaddingLabel(frame: .zero)
+        label.backgroundColor = .red
+        label.textColor = .white
+        label.textAlignment = .center
+        label.layer.cornerRadius = 10.0
+        label.clipsToBounds = true
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+
     var selectedBorderColor: UIColor = .white {
         didSet {
             borderView.layer.borderColor = selectedBorderColor.cgColor
@@ -42,6 +53,18 @@ open class PickableCell: UICollectionViewCell {
     }
 
     var selectedBorderWidth: CGFloat = 4.0
+
+    var selectedPosition: Int = -1 {
+        didSet {
+            updateSelectedPosition()
+        }
+    }
+    
+    var showsSelectedPosition: Bool = false {
+        didSet {
+            updateSelectedPosition()
+        }
+    }
 
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -69,11 +92,30 @@ open class PickableCell: UICollectionViewCell {
         borderView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
         borderView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
         borderView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
+
+        contentView.addSubview(positionLabel)
+        positionLabel.layer.zPosition = 10
+        positionLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8.0).isActive = true
+        positionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8.0).isActive = true
+        positionLabel.heightAnchor.constraint(equalToConstant: 20.0).isActive = true
+        positionLabel.widthAnchor.constraint(greaterThanOrEqualToConstant: 20.0).isActive = true
+        positionLabel.isHidden = true
+
+    }
+
+    private func updateSelectedPosition() {
+        if showsSelectedPosition && selectedPosition != -1 {
+            positionLabel.text = "\(selectedPosition)"
+            positionLabel.isHidden = false
+        } else {
+            positionLabel.isHidden = true
+        }
     }
 
     override open var isSelected: Bool {
         didSet {
             borderView.layer.borderWidth = isSelected ? selectedBorderWidth : 0
+            updateSelectedPosition()
         }
     }
 }

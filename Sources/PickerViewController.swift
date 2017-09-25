@@ -23,13 +23,13 @@ public final class PickerViewController<DataSource: PickableDataSource>: UIViewC
     private lazy var delegateProxy: PickerViewDelegateProxy = {
         let proxy = PickerViewDelegateProxy(options: self.options)
         proxy.reloadCellsHandler = { [weak self] collectionView, indexPath in
-            guard let cell = collectionView.cellForItem(at: indexPath) else { return }
-            self?.updateCellAlpha(cell: cell, indexPath: indexPath)
+            guard let cell = collectionView.cellForItem(at: indexPath) as? DataSource.Cell else { return }
+            self?.updateCellSelectedStyle(cell: cell, indexPath: indexPath)
         }
-        proxy.didSelectHandler = { [weak self] in
+        proxy.didSelectHandler = { [weak self] _ in
             self?.updateBarButton()
         }
-        proxy.didDeselectHandler = { [weak self] in
+        proxy.didDeselectHandler = { [weak self] _ in
             self?.updateBarButton()
         }
         return proxy
@@ -47,7 +47,7 @@ public final class PickerViewController<DataSource: PickableDataSource>: UIViewC
                 cell.selectedBorderWidth = options.selectedBorderWidth
             }
             self?.dataSource.configure(cell: cell, at: indexPath)
-            self?.updateCellAlpha(cell: cell, indexPath: indexPath)
+            self?.updateCellSelectedStyle(cell: cell, indexPath: indexPath)
             return cell
         }
         proxy.prefetchHandler = { [weak self] indexPaths in
@@ -159,9 +159,10 @@ public final class PickerViewController<DataSource: PickableDataSource>: UIViewC
         return collectionView.orderedIndexPathsForSelectedItems.count >= options.limitOfSelection
     }
 
-    private func updateCellAlpha(cell: UICollectionViewCell, indexPath: IndexPath) {
+    private func updateCellSelectedStyle(cell: PickableCell, indexPath: IndexPath) {
         if !collectionView.allowsMultipleSelection {
             cell.alpha = 1.0
+            cell.showsSelectedPosition = false
             return
         }
 
@@ -170,6 +171,9 @@ public final class PickerViewController<DataSource: PickableDataSource>: UIViewC
         } else {
             cell.alpha = 1.0
         }
+
+        cell.showsSelectedPosition = options.showsSelectedNumber
+        cell.selectedPosition = collectionView.orderedIndexPathsForSelectedItems.index(of: indexPath).map { $0 + 1 } ?? -1
     }
 
     deinit {
