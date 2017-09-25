@@ -51,15 +51,15 @@ open class PickableCell: UICollectionViewCell {
         }
     }
 
-    public var selectedNumberTintColor: UIColor = .white {
+    public var selectedPositionTintColor: UIColor = .white {
         didSet {
-            positionLabel.backgroundColor = selectedNumberTintColor
+            positionLabel.backgroundColor = selectedPositionTintColor
         }
     }
 
-    public var selectedNumberTextColor: UIColor = .white {
+    public var selectedPositionTextColor: UIColor = .white {
         didSet {
-            positionLabel.textColor = selectedNumberTextColor
+            positionLabel.textColor = selectedPositionTextColor
         }
     }
 

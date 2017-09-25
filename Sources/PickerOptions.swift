@@ -22,6 +22,6 @@ public final class PickerOptions {
     public var pickButtonTitle: String = "Pick"
     public var viewTitle: String = ""
     public var showsSelectedNumber: Bool = true
-    public var selectedNumberTintColor: UIColor = .white
-    public var selectedNumberTextColor: UIColor = PickerOptions.defaultTintColor
+    public var selectedPositionTintColor: UIColor = .white
+    public var selectedPositionTextColor: UIColor = PickerOptions.defaultTintColor
 }

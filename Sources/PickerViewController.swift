@@ -45,8 +45,8 @@ public final class PickerViewController<DataSource: PickableDataSource>: UIViewC
             if let options = self?.options {
                 cell.selectedBorderColor = options.selectedBorderColor
                 cell.selectedBorderWidth = options.selectedBorderWidth
-                cell.selectedNumberTintColor = options.selectedNumberTintColor
-                cell.selectedNumberTextColor = options.selectedNumberTextColor
+                cell.selectedPositionTintColor = options.selectedPositionTintColor
+                cell.selectedPositionTextColor = options.selectedPositionTextColor
             }
             self?.dataSource.configure(cell: cell, at: indexPath)
             self?.updateCellSelectedStyle(cell: cell, indexPath: indexPath)

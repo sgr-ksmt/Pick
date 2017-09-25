@@ -9,11 +9,7 @@
 import UIKit
 
 final class PickerCollectionView: UICollectionView {
-    var orderedIndexPathsForSelectedItems: [IndexPath] = [] {
-        didSet {
-            print(orderedIndexPathsForSelectedItems)
-        }
-    }
+    var orderedIndexPathsForSelectedItems: [IndexPath] = []
 
     override func reloadData() {
         orderedIndexPathsForSelectedItems = []
