@@ -37,11 +37,10 @@ open class PickableCell: UICollectionViewCell {
 
     private lazy var positionLabel: PaddingLabel = {
         let label = PaddingLabel(frame: .zero)
-        label.backgroundColor = .red
-        label.textColor = .white
         label.textAlignment = .center
         label.layer.cornerRadius = 10.0
         label.clipsToBounds = true
+        label.font = .systemFont(ofSize: 12.0)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -49,6 +48,18 @@ open class PickableCell: UICollectionViewCell {
     var selectedBorderColor: UIColor = .white {
         didSet {
             borderView.layer.borderColor = selectedBorderColor.cgColor
+        }
+    }
+
+    public var selectedNumberTintColor: UIColor = .white {
+        didSet {
+            positionLabel.backgroundColor = selectedNumberTintColor
+        }
+    }
+
+    public var selectedNumberTextColor: UIColor = .white {
+        didSet {
+            positionLabel.textColor = selectedNumberTextColor
         }
     }
 
