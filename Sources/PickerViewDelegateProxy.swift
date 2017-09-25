@@ -25,8 +25,12 @@ final class PickerViewDelegateProxy: NSObject, UICollectionViewDelegate, UIColle
         super.init()
     }
 
+    private func _collectionView(_ collectionView: UICollectionView) -> PickerCollectionView {
+        return collectionView as! PickerCollectionView
+    }
+
     private func isLimited(collectionView: UICollectionView) -> Bool {
-        return (collectionView.indexPathsForSelectedItems?.count ?? 0) >= self.options.limitOfSelection
+        return _collectionView(collectionView).orderedIndexPathsForSelectedItems.count >= self.options.limitOfSelection
     }
 
     func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
@@ -41,6 +45,9 @@ final class PickerViewDelegateProxy: NSObject, UICollectionViewDelegate, UIColle
         defer {
             beforeLimitedState = isLimited
         }
+
+        _collectionView(collectionView).orderedIndexPathsForSelectedItems.append(indexPath)
+
         if collectionView.allowsMultipleSelection {
             if beforeLimitedState != isLimited, isLimited {
                 collectionView.indexPathsForVisibleItems.forEach { reloadCellsHandler(collectionView, $0) }
@@ -54,6 +61,11 @@ final class PickerViewDelegateProxy: NSObject, UICollectionViewDelegate, UIColle
         defer {
             beforeLimitedState = isLimited
         }
+
+        if let index = _collectionView(collectionView).orderedIndexPathsForSelectedItems.index(of: indexPath) {
+            _collectionView(collectionView).orderedIndexPathsForSelectedItems.remove(at: index)
+        }
+
         if collectionView.allowsMultipleSelection {
             if beforeLimitedState != isLimited, !isLimited {
                 collectionView.indexPathsForVisibleItems.forEach { reloadCellsHandler(collectionView, $0) }

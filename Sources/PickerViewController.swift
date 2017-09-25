@@ -60,9 +60,9 @@ public final class PickerViewController<DataSource: PickableDataSource>: UIViewC
         return proxy
     }()
 
-    private(set) lazy var collectionView: UICollectionView = {
+    private(set) lazy var collectionView: PickerCollectionView = {
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        let view: UICollectionView = UICollectionView(frame: self.view.bounds, collectionViewLayout: layout)
+        let view = PickerCollectionView(frame: self.view.bounds, collectionViewLayout: layout)
         view.backgroundColor = .white
         view.delegate = self.delegateProxy
         view.dataSource = self.dataSourceProxy
@@ -124,7 +124,7 @@ public final class PickerViewController<DataSource: PickableDataSource>: UIViewC
     }
 
     @objc private func pick() {
-        let selectedIndexPaths = collectionView.indexPathsForSelectedItems ?? []
+        let selectedIndexPaths = collectionView.orderedIndexPathsForSelectedItems
         if selectedIndexPaths.isEmpty { return }
         pickItemsHandler?(dataSource.pickItems(indexes: selectedIndexPaths.map { $0.item }))
         navigationController?.dismiss(animated: true, completion: nil)
@@ -134,7 +134,7 @@ public final class PickerViewController<DataSource: PickableDataSource>: UIViewC
         if options.limitOfSelection <= 1 {
             return options.pickButtonTitle
         } else {
-            let selectedCount = collectionView.indexPathsForSelectedItems?.count ?? 0
+            let selectedCount = collectionView.orderedIndexPathsForSelectedItems.count
             if selectedCount == 0 {
                 return options.pickButtonTitle
             } else {
@@ -151,12 +151,12 @@ public final class PickerViewController<DataSource: PickableDataSource>: UIViewC
 
     private func updateBarButton() {
         pickBarButton.title = pickButtonTitle
-        pickBarButton.isEnabled = !(collectionView.indexPathsForSelectedItems ?? []).isEmpty
+        pickBarButton.isEnabled = !collectionView.orderedIndexPathsForSelectedItems.isEmpty
         cancelBarButton.title = options.cancelButtonTitle
     }
 
     private var isLimited: Bool {
-        return (collectionView.indexPathsForSelectedItems?.count ?? 0) >= options.limitOfSelection
+        return collectionView.orderedIndexPathsForSelectedItems.count >= options.limitOfSelection
     }
 
     private func updateCellAlpha(cell: UICollectionViewCell, indexPath: IndexPath) {
@@ -166,7 +166,7 @@ public final class PickerViewController<DataSource: PickableDataSource>: UIViewC
         }
 
         if self.isLimited {
-            cell.alpha = (collectionView.indexPathsForSelectedItems ?? []).contains(indexPath) ? 1.0 : 0.55
+            cell.alpha = collectionView.orderedIndexPathsForSelectedItems.contains(indexPath) ? 1.0 : 0.55
         } else {
             cell.alpha = 1.0
         }
