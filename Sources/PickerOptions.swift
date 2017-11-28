@@ -24,4 +24,5 @@ public final class PickerOptions {
     public var showsSelectedNumber: Bool = true
     public var selectedPositionTintColor: UIColor = .white
     public var selectedPositionTextColor: UIColor = PickerOptions.defaultTintColor
+    public var isPrefetchingEnabled: Bool = false
 }

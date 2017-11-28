@@ -25,6 +25,7 @@ class ViewController: UIViewController {
         nav.options = {
             let options = PickerOptions()
             options.limitOfSelection = 10
+            options.isPrefetchingEnabled = true
             options.viewTitle = "Color Picker"
             return options
         }()

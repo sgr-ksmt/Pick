@@ -149,6 +149,7 @@ public final class PickerViewController<DataSource: PickableDataSource>: UIViewC
         title = options.viewTitle
         delegateProxy.options = options
         collectionView.allowsMultipleSelection = options.limitOfSelection > 1
+        collectionView.prefetchDataSource = options.isPrefetchingEnabled ? self.dataSourceProxy : nil
     }
 
     private func updateBarButton() {
