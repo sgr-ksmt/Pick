@@ -193,7 +193,7 @@ enjoy 😄
 - Add the following to your *Cartfile*:
 
 ```bash
-github "sgr-ksmt/Pick" ~> 0.2
+github "sgr-ksmt/Pick" ~> 0.3
 ```
 
 - Run `carthage update`
@@ -207,7 +207,7 @@ github "sgr-ksmt/Pick" ~> 0.2
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'Pick', '~> 0.2'
+pod 'Pick', '~> 0.3'
 ```
 
 and run `pod install`
