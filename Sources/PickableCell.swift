@@ -65,7 +65,7 @@ open class PickableCell: UICollectionViewCell {
 
     var selectedBorderWidth: CGFloat = 4.0
 
-    var selectedPosition: Int = -1 {
+    internal(set) public var selectedPosition: Int = -1 {
         didSet {
             updateSelectedPosition()
         }
