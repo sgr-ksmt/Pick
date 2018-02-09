@@ -129,7 +129,6 @@ public final class PickerViewController<DataSource: PickableDataSource>: UIViewC
         let selectedIndexPaths = collectionView.orderedIndexPathsForSelectedItems
         if selectedIndexPaths.isEmpty { return }
         pickItemsHandler?(dataSource.pickItems(indexes: selectedIndexPaths.map { $0.item }))
-        navigationController?.dismiss(animated: true, completion: nil)
     }
 
     private var pickButtonTitle: String {

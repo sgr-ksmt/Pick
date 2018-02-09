@@ -31,6 +31,7 @@ class ViewController: UIViewController {
         }()
 
         nav.pickItemsHandler = { items in
+            nav.dismiss(animated: true, completion: nil)
             print(items, items.count)
         }
 
@@ -57,6 +58,7 @@ class ViewController: UIViewController {
             return options
         }()
         nav.pickItemsHandler = { assets in
+            nav.dismiss(animated: true, completion: nil)
             print(assets)
         }
 
