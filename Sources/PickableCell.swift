@@ -114,7 +114,7 @@ open class PickableCell: UICollectionViewCell {
 
     }
 
-    private func updateSelectedPosition() {
+    open func updateSelectedPosition() {
         if showsSelectedPosition && selectedPosition != -1 {
             positionLabel.text = "\(selectedPosition)"
             positionLabel.isHidden = false
