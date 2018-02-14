@@ -32,6 +32,7 @@ public final class PickerViewController<DataSource: PickableDataSource>: UIViewC
         }
         proxy.didSelectHandler = { [weak self] index in
             guard let `self` = self else { return }
+            guard !self.dataSource.selectedItems.contains(self.dataSource.items[index.row]) else { return }
             self.dataSource.selectedItems.append(self.dataSource.items[index.row])
             self.updateBarButton()
         }
@@ -181,7 +182,10 @@ public final class PickerViewController<DataSource: PickableDataSource>: UIViewC
         } else {
             cell.alpha = 1.0
         }
-
+        if isSelected {
+            collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
+        }
+        cell.isSelected = isSelected
         cell.showsSelectedPosition = options.showsSelectedNumber
         cell.selectedPosition = dataSource.selectedItems.index { $0 == dataSource.items[indexPath.item] }.map { $0 + 1 } ?? -1
     }
