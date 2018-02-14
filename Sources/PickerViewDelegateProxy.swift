@@ -14,44 +14,32 @@ final class PickerViewDelegateProxy: NSObject, UICollectionViewDelegate, UIColle
     var reloadCellsHandler: (UICollectionView, IndexPath) -> Void = { _, _ in }
     var didSelectHandler: (IndexPath) -> Void = { _ in }
     var didDeselectHandler: (IndexPath) -> Void = { _ in }
+    var isLimited: () -> Bool = { false }
 
     init(options: PickerOptions) {
         self.options = options
         super.init()
     }
 
-    private func _collectionView(_ collectionView: UICollectionView) -> PickerCollectionView {
-        return collectionView as! PickerCollectionView
-    }
-
-    private func isLimited(collectionView: UICollectionView) -> Bool {
-        return _collectionView(collectionView).orderedIndexPathsForSelectedItems.count >= self.options.limitOfSelection
-    }
-
     func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
         if collectionView.allowsMultipleSelection {
-            return !isLimited(collectionView: collectionView)
+            return !isLimited()
         }
         return true
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        _collectionView(collectionView).orderedIndexPathsForSelectedItems.append(indexPath)
+        didSelectHandler(indexPath)
         if collectionView.allowsMultipleSelection {
             collectionView.indexPathsForVisibleItems.forEach { reloadCellsHandler(collectionView, $0) }
         }
-        didSelectHandler(indexPath)
     }
 
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        if let index = _collectionView(collectionView).orderedIndexPathsForSelectedItems.index(of: indexPath) {
-            _collectionView(collectionView).orderedIndexPathsForSelectedItems.remove(at: index)
-        }
-
+        didDeselectHandler(indexPath)
         if collectionView.allowsMultipleSelection {
             collectionView.indexPathsForVisibleItems.forEach { reloadCellsHandler(collectionView, $0) }
         }
-        didDeselectHandler(indexPath)
     }
 
     private var margin: CGFloat {

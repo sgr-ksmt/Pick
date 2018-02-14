@@ -8,11 +8,13 @@
 
 import UIKit
 
-public protocol PickableDataSource {
+public protocol PickableDataSource: class {
     associatedtype Cell: PickableCell
-    associatedtype Item
+    associatedtype Item: Pickable
 
     var numberOfItems: Int { get }
+    var items: [Item] { get set }
+    var selectedItems: [Item] { get set }
     func configure(cell: Cell, at indexPath: IndexPath)
     func pickItems(indexes: [Int]) -> [Item]
 
