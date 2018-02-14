@@ -183,7 +183,7 @@ public final class PickerViewController<DataSource: PickableDataSource>: UIViewC
             cell.alpha = 1.0
         }
         if isSelected {
-            collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
+            collectionView.selectItem(at: indexPath, animated: true, scrollPosition: [])
         }
         cell.isSelected = isSelected
         cell.showsSelectedPosition = options.showsSelectedNumber
