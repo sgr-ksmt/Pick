@@ -8,11 +8,4 @@
 
 import UIKit
 
-final class PickerCollectionView: UICollectionView {
-    var orderedIndexPathsForSelectedItems: [IndexPath] = []
-
-    override func reloadData() {
-        orderedIndexPathsForSelectedItems = []
-        super.reloadData()
-    }
-}
+final class PickerCollectionView: UICollectionView { }

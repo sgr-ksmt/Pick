@@ -9,22 +9,28 @@
 import Foundation
 import Pick
 
+extension UIColor: Pickable { }
+
 class ColorDataSource: NSObject, PickableDataSource {
-    private var colors: [UIColor] = []
-    override init() {
+    internal var items: [UIColor] = []
+    var selectedItems: [UIColor]
+
+    init(selectedItems: [UIColor] = []) {
+        self.items = []
+        self.selectedItems = selectedItems
         super.init()
-        (0..<100).forEach { _ in colors.append(UIColor.random) }
+        (0..<100).forEach { _ in items.append(UIColor.random) }
     }
 
     var numberOfItems: Int {
-        return colors.count
+        return items.count
     }
 
     func configure(cell: ColorCell, at indexPath: IndexPath) {
-        cell.configure(with: colors[indexPath.item])
+        cell.configure(with: items[indexPath.item])
     }
 
     func pickItems(indexes: [Int]) -> [UIColor] {
-        return indexes.map { colors[$0] }
+        return indexes.map { items[$0] }
     }
 }

@@ -1,5 +1,5 @@
 # Pick
-Protocol-Oriented PickerViewController.  
+Protocol-Oriented PickerViewController.
 You can pick whatever you want from defined data source by you.
 
 [![GitHub release](https://img.shields.io/github/release/sgr-ksmt/Pick.svg)](https://github.com/sgr-ksmt/Pick/releases)
@@ -49,7 +49,7 @@ final class AssetCell: PickableCell {
         options.resizeMode = .exact
         return options
     }()
-    
+
     private var asset: PHAsset?
     func configure(with asset: PHAsset) {
         self.asset = asset
@@ -79,7 +79,7 @@ final class AssetCell: PickableCell {
 ```
 
 ### Define DataSource
-Create DataSource that adapts `PickableDataSource`.  
+Create DataSource that adapts `PickableDataSource`.
 You have to implement:
 
 - `typealias Cell`
@@ -89,12 +89,22 @@ You have to implement:
 - `pickItems(indexes: [Int]) -> [Item]`
 
 ```swift
+extension PHAsset: Pickable {
+    static func ==(lhs: PHAsset, rhs: PHAsset) -> Bool {
+        return rhs.localIdentifier == lhs.localIdentifier
+    }
+}
+
 final class AssetDataSource: NSObject, PickableDataSource {
     typealias Cell = AssetCell
     typealias Item = PHAsset
 
-    var assets: PHFetchResult<PHAsset>?
-    override init() {
+    var items: [PHAsset]
+    var selectedItems: [PHAsset]
+
+    init(selectedItems: [PHAsset] = []) {
+        self.selectedItems = selectedItems
+        self.items = []
         super.init()
         fetchCameraroll()
         PHPhotoLibrary.shared().register(self)
@@ -104,21 +114,20 @@ final class AssetDataSource: NSObject, PickableDataSource {
         guard let cameraroll = PHAssetCollection.fetchAssetCollections(with: .smartAlbum, subtype: .smartAlbumUserLibrary, options: nil).firstObject else {
             return
         }
-        self.assets = PHAsset.fetchAssets(in: cameraroll, options: nil)
+        let assets = PHAsset.fetchAssets(in: cameraroll, options: nil)
+        items = assets.objects(at: IndexSet(0..<assets.count))
     }
 
     func configure(cell: Cell, at indexPath: IndexPath) {
-        if let asset = assets?.object(at: indexPath.item) {
-            cell.configure(with: asset)
-        }
+        cell.configure(with: items[indexPath.item])
     }
 
     var numberOfItems: Int {
-        return assets?.count ?? 0
+        return items.count
     }
 
     func pickItems(indexes: [Int]) -> [Item] {
-        return assets?.objects(at: IndexSet(indexes)) ?? []
+        return indexes.map { items[$0] }
     }
 
     deinit {
@@ -133,9 +142,6 @@ extension AssetDataSource: PHPhotoLibraryChangeObserver {
                 return
             }
 
-            guard let assets = self.assets else { return }
-            guard let _ = changeInstance.changeDetails(for: assets) else { return }
-
             self.fetchCameraroll()
             self.notifyUpdate()
         }
@@ -147,16 +153,17 @@ In order to update picker view after updating datasource, call `notifyUpdate()`
 
 ```swift
 final class SomeDataSource: NSObject, PickableDataSource {
-    private var list: [Int] = []
+    var items: [Int] = []
+
     func update() {
-        list = ...
+        items = ...
         notifyUpdate()
     }
 }
 ```
 
 ### Setup ViewController
-Set data source to PickerViewController(PickerNavigationController).  
+Set data source to PickerViewController(PickerNavigationController).
 Also you can customize using `PickerOptions`.
 
 ```swift
