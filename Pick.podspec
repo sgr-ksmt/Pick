@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "Pick"
-  s.version          = "0.4.1"
+  s.version          = "0.4.2"
   s.summary          = "Protocol-Oriented PickerViewController"
   s.homepage         = "https://github.com/sgr-ksmt/Pick"
   # s.screenshots     = ""
