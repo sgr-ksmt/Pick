@@ -102,7 +102,7 @@ public final class PickerViewController<DataSource: PickableDataSource>: UIViewC
 
     private var token: NSObjectProtocol?
 
-    let dataSource: DataSource
+    public let dataSource: DataSource
     public init(dataSource: DataSource) {
         self.dataSource = dataSource
         super.init(nibName: nil, bundle: nil)
