@@ -171,21 +171,21 @@ public final class PickerViewController<DataSource: PickableDataSource>: UIViewC
     }
 
     private func updateCellSelectedStyle(cell: PickableCell, indexPath: IndexPath) {
+        let isSelected = dataSource.selectedItems.contains { $0 == dataSource.items[indexPath.item] }
+        if isSelected {
+            collectionView.selectItem(at: indexPath, animated: true, scrollPosition: [])
+        }
+        cell.isSelected = isSelected
         if !collectionView.allowsMultipleSelection {
             cell.alpha = 1.0
             cell.showsSelectedPosition = false
             return
         }
-        let isSelected = dataSource.selectedItems.contains { $0 == dataSource.items[indexPath.item] }
         if self.isLimited {
             cell.alpha = isSelected ? 1.0 : 0.55
         } else {
             cell.alpha = 1.0
         }
-        if isSelected {
-            collectionView.selectItem(at: indexPath, animated: true, scrollPosition: [])
-        }
-        cell.isSelected = isSelected
         cell.showsSelectedPosition = options.showsSelectedNumber
         cell.selectedPosition = dataSource.selectedItems.index { $0 == dataSource.items[indexPath.item] }.map { $0 + 1 } ?? -1
     }
